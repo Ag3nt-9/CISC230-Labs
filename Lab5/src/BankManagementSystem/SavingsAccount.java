@@ -16,7 +16,7 @@ public class SavingsAccount extends BankAccount {
 	
 	@Override
 	public void generateInterest() {
-		balance *= 1.003;
+		balance *= 1.01;
 		this.logTransaction("Interest Generated. New Balance: $"+balance);
 	}
 }
