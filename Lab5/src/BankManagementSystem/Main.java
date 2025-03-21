@@ -25,9 +25,10 @@ public class Main {
 			switch(choice) {
 			case 1:
 				bank.displayAllAccounts();
+				break;
 			case 2:
 				System.out.println("Enter your name: ");
-				String name = scanner.nextLine();
+				String name = scanner.next();
 				System.out.println("Enter Initial Balance: ");
 				double balance = scanner.nextDouble();
 				System.out.println("(1) Checking Account");
@@ -35,20 +36,21 @@ public class Main {
 				System.out.println("Enter Account Type: ");
 				int accountType = scanner.nextInt();
 				bank.createAccount(name, balance, accountType);
+				break;
 			case 3:
 				System.out.println("Enter Account Number: ");
 				accountNumber = scanner.nextInt();
 				System.out.println("Enter $ Amount: ");
 				amount = scanner.nextDouble();
 				bank.deposit(accountNumber, amount);
-
+				break;
 			case 4:
 				System.out.println("Enter Account Number: ");
 				accountNumber = scanner.nextInt();
 				System.out.println("Enter $ Amount: ");
 				amount = scanner.nextDouble();
 				bank.withdraw(accountNumber, amount);
-
+				break;
 			case 5:
 				System.out.println("Enter Account Number Gaining Funds: ");
 				int toAccountNumber = scanner.nextInt();
@@ -59,13 +61,15 @@ public class Main {
 				System.out.println("Enter $ Amount: ");
 				amount = scanner.nextDouble();
 				bank.transferFunds(fromAccountNumber, toAccountNumber, amount);
-
+				break;
 			case 6:
 				System.out.println("Enter Account Number: ");
 				accountNumber = scanner.nextInt();
 				bank.viewTransactionHistory(accountNumber);
+				break;
 			case 7:
 				bank.generateInterest();
+				break;
 			}
 		} while (choice != 8);
 		scanner.close();
