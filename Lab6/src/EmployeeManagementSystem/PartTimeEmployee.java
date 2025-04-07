@@ -10,7 +10,7 @@ public class PartTimeEmployee extends AbstractEmployee {
 	}
 	
 	public double calculateSalary() {
-		this.salary = hourly_wage * hours;
+		this.salary = hourly_wage * hours * 50;
 		return this.salary;
 	}
 	

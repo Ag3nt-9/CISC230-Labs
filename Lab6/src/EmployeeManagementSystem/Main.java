@@ -35,7 +35,7 @@ public class Main {
 					System.out.println("(2) Part Time");
 					System.out.println("(3) Intern");
 					subchoice = scanner.nextInt();
-				} while (subchoice < 1 && subchoice > 3);
+				} while (subchoice < 1 || subchoice > 3);
 				switch (subchoice) {
 				case 2:
 					double hourly_wage, hours;
@@ -65,12 +65,53 @@ public class Main {
 				}
 				break;
 			case 3:
-				System.out.println("Enter Employee:");
+				System.out.println("Enter Employee Name:");
 				name = scanner.next();
 				for (AbstractEmployee employee:employees) {
-					if (employee.getName() == name) {
-						if (employee.getClass().getSimpleName() == "FullTimeEmployee") {
-							
+					if (employee.getName().equals(name)) {
+						if (employee.getClass().getSimpleName().equals("FullTimeEmployee")) {
+							do {
+								System.out.println("Manage Full Time Employee");
+								System.out.println("(1) Calculate Salary");
+								System.out.println("(2) Set Bonus");
+								subchoice = scanner.nextInt();
+							} while (subchoice < 1 || subchoice > 2);
+							switch (subchoice) {
+							case 1:
+								System.out.println("Salary: $"+employee.calculateSalary());
+								break;
+							case 2:
+								System.out.println("Enter Bonus:");
+								((FullTimeEmployee) employee).setBonus(scanner.nextDouble());
+								break;
+							}
+						} else if (employee.getClass().getSimpleName().equals("PartTimeEmployee")) {
+							do {
+								System.out.println("Manage Part Time Employee");
+								System.out.println("(1) Calculate Salary");
+								System.out.println("(2) Set Hours");
+								subchoice = scanner.nextInt();
+							} while (subchoice < 1 || subchoice > 3);
+							switch (subchoice) {
+							case 1:
+								System.out.println("Salary: $"+employee.calculateSalary());
+								break;
+							case 2:
+								System.out.println("Enter Hours:");
+								((PartTimeEmployee) employee).setHours(scanner.nextDouble());
+								break;
+							}
+						} else if (employee.getClass().getSimpleName().equals("InternEmployee")) {
+							do {
+								System.out.println("Manage Intern Employee");
+								System.out.println("(1) Calculate Salary");
+								subchoice = scanner.nextInt();
+							} while (subchoice != 1);
+							switch (subchoice) {
+							case 1:
+								System.out.println("Salary: $"+employee.calculateSalary());
+								break;
+							}
 						}
 					}
 				}
