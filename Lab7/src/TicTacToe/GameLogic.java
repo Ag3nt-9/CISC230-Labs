@@ -5,11 +5,15 @@ public class GameLogic {
 	private GameBoard board;
 	
 	public void startGame() {
-		
+		currentPlayer = player1;
 	}
 	
 	public boolean makeMove(int row, int col) {
-		
+		if (board.isCellEmpty(row, col)) {
+			return board.placeMove(row, col, currentPlayer.getSymbol());
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean checkWin() {

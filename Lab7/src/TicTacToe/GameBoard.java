@@ -24,7 +24,9 @@ public class GameBoard {
 	}
 	
 	public boolean checkWin(char symbol) {
-		
+		for (char[] row: board) {
+			
+		}
 	}
 	
 	public boolean isDraw() {
