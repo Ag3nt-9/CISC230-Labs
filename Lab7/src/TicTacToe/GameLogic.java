@@ -17,15 +17,19 @@ public class GameLogic {
 	}
 	
 	public boolean checkWin() {
-		
+		return board.checkWin(currentPlayer.getSymbol());
 	}
 	
 	public boolean isDraw() {
-		
+		return board.isDraw();
 	}
 	
 	public void switchPlayer() {
-		
+		if (currentPlayer == player1) {
+			currentPlayer = player2;
+		} else {
+			currentPlayer = player1;
+		}
 	}
 	
 	public void resetGame() {
