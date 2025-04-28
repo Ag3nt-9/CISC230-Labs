@@ -1,22 +1,33 @@
 package TicTacToe;
 
+import java.awt.Font;
+import java.awt.event.*;
+
 import javax.swing.*;
 
 public class TicTacToeGUI {
-	private static JFrame frame = new JFrame("Tic Tac Toe");
-	private static JButton[][] buttons = new JButton[3][3];
-	private static JLabel statusLabel;
-	private static JButton resetButton;
+	private JFrame frame = new JFrame("Tic Tac Toe");
+	private JButton[][] buttons = new JButton[3][3];
+	private JLabel statusLabel;
+	private JButton resetButton;
+	private GameController controller;
 	public TicTacToeGUI(GameController controller) {
-		
+		this.controller = controller;
 	}
 
-	public static void main(String[] args) {
+	public void generateWindow() {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				buttons[i][j] = new JButton("");
 				buttons[i][j].setBounds(100 + 100*j, 150 + 100*i, 100, 100);
-				buttons[i][j].addActionListener(null);
+				final int row = i;
+				final int col = j;
+				buttons[i][j].addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						controller.onCellClicked(row, col);
+					}
+				});
 				frame.add(buttons[i][j]);
 			}
 		}
@@ -24,6 +35,19 @@ public class TicTacToeGUI {
 		
 		resetButton = new JButton("Reset");
 		resetButton.setBounds(300, 510, 200, 50);
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.onResetClicked();
+			}
+		});
+		
+		statusLabel = new JLabel("");
+		statusLabel.setBounds(120, 70, 300, 100);
+		statusLabel.setFont(new Font("SansSerif", Font.BOLD, 36));
+		frame.add(statusLabel);
+
+
 		
 		frame.add(resetButton);
 		
@@ -41,17 +65,12 @@ public class TicTacToeGUI {
 		}
 	}
 	
-	public static void showWinner(String playerName) {
-		statusLabel = new JLabel(playerName + " Wins!");
-		statusLabel.setBounds(200, 250, 300, 100);
-		frame.add(statusLabel);
-		
+	public void showWinner(String playerName) {
+		statusLabel.setText(playerName+" Wins!");
 	}
 	
 	public void showDraw() {
-		statusLabel = new JLabel("Its a Draw!");
-		statusLabel.setBounds(200, 250, 300, 100);
-		frame.add(statusLabel);
+		statusLabel.setText("It's a Draw!");
 	}
 	
 	public void clearBoard() {
@@ -60,6 +79,7 @@ public class TicTacToeGUI {
 				buttons[i][j].setText("");
 			}
 		}
+		statusLabel.setText("");
 	}
 	
 	public void showMessage(String message) {

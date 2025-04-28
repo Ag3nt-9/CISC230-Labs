@@ -3,6 +3,13 @@ package TicTacToe;
 public class GameLogic {
 	private Player currentPlayer, player1, player2;
 	private GameBoard board = new GameBoard();
+	private boolean playerWon = false;
+	
+	public GameLogic() {
+		player1 = new HumanPlayer("X-Human", 'X');
+		player2 = new HumanPlayer("O-Person", 'O');
+		startGame();
+	}
 	
 	public void startGame() {
 		currentPlayer = player1;
@@ -17,6 +24,7 @@ public class GameLogic {
 	}
 	
 	public boolean checkWin() {
+		playerWon = board.checkWin(currentPlayer.getSymbol());
 		return board.checkWin(currentPlayer.getSymbol());
 	}
 	
@@ -33,7 +41,13 @@ public class GameLogic {
 	}
 	
 	public void resetGame() {
-		
+		board.resetBoard();
+		playerWon = false;
+		currentPlayer = player1;
+	}
+	
+	public boolean hasPlayerWon() {
+		return playerWon;
 	}
 	
 	public Player getCurrentPlayer() {
