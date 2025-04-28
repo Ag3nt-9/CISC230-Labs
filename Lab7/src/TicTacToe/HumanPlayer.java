@@ -7,6 +7,6 @@ public class HumanPlayer extends AbstractPlayer {
 	
 	@Override
 	public int[] makeMove(char[][] board) {
-
+		
 	}
 }

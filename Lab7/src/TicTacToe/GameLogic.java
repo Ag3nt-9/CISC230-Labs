@@ -2,7 +2,7 @@ package TicTacToe;
 
 public class GameLogic {
 	private Player currentPlayer, player1, player2;
-	private GameBoard board;
+	private GameBoard board = new GameBoard();
 	
 	public void startGame() {
 		currentPlayer = player1;
@@ -38,5 +38,9 @@ public class GameLogic {
 	
 	public Player getCurrentPlayer() {
 		return currentPlayer;
+	}
+	
+	public GameBoard getGameBoard() {
+		return board;
 	}
 }
