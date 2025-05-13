@@ -60,7 +60,6 @@ public class BookTest {
 		library.addBook(book);
 		Member member = new Member("John");
 
-		// Book not borrowed by member
 		member.returnBook(library, "Dracula");
 	}
 }
